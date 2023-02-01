@@ -1,0 +1,38 @@
+header {
+  /* position: relative; */
+  height: 520px;
+  padding-top: 22px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e60041;
+background-image: url("../images/black-linen.png")
+}
+header h3{
+  text-shadow: 0 1px 1px #bbb,
+		0 2px 0 #999, 
+		0 3px 0 #888, 
+		0 4px 0 #777, 
+		0 5px 0 #666, 
+		0 6px 0 #555, 
+		0 7px 0 #444, 
+		0 8px 0 #333, 
+		0 9px 7px #302314;
+}
+
+h3 {
+  margin: -28px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header_name {
+    
+  color: beige;
+  }
+header h3 span {
+  font-size: 36px;
+  font-weight: bold;
+}
