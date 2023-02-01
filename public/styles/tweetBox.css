@@ -1,0 +1,73 @@
+/*  for tweetbox */
+article {
+  position: relative;
+  width: 100%;
+  height: 11em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  border: 3mm ridge rgba(255, 138, 138, 0.6);
+  
+}
+
+#tweets-container:hover{
+  box-shadow: 5px 5px darkred;
+}
+
+article header{
+  padding: 0 15px;
+  background-image: none;
+  background-color: #f4f1ec;
+  position: absolute;
+  top: 5px;
+  width: 95%;
+  height: 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+article header img{
+  width:4em;
+}
+article header .tweeterName{
+  width: 6em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+article .tweetedText{
+  position: absolute;
+  padding: 5px;
+  bottom: 2.5rem;
+  border:2mm ridge rgba(234, 225, 187, 0.6); ;
+  border-bottom:solid 2px black;
+  width: 95%;
+  height: 40%;
+
+}
+article footer{
+  position: absolute;
+  bottom: 0.4em;
+  width: 95%;
+  /* height: 10px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+article footer .icons{
+  cursor: pointer;
+  width: 5em;
+  margin: 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+article i:hover{
+  color: rgb(238, 178, 109);
+}
