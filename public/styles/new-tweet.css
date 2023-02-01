@@ -1,0 +1,20 @@
+#tweetBtn{
+  background-color: navy;
+  color: antiquewhite;
+  }
+#tweet-text{
+  border: none;
+  border-bottom: solid 4px black;
+  background-color: #f4f1ec;
+  width:100%;
+  
+  margin-bottom: 10px;
+}
+
+.under-tweet-input{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Bungee', cursive;
+  font-size: 18px;
+}
