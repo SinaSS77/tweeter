@@ -1,22 +1,21 @@
-//$(document).ready runs a callback when the DOM is ready to be manipulated with jQuery. Without it we might accidentally try to access HTML elements that the browser hasn't had the chance to load, causing errors.
+//responsible for character counter of tweet input form
+$(document).ready(function () {
+  $('#tweet-text').on('keyup', function (e) {
+    //tracking character count input from user using keyup
+    const currentValue = $(this).val().length
+    //locating the counter element
+    const remainingChars = 140 - currentValue;
 
-$(document).ready(function(){
-  
-  $("#tweet-text").on("keyup", function(e){  // inside the document, targeting the textbox
-    
-    const currentValue = $(this).val().length;  // calculate the current charecter
-    const remainingCharacter = 140 - currentValue; // maximum is 140 character
-    const counterElement = $(".counter");
-    counterElement.text(remainingCharacter);
+    const counterElement = $('.counter')
+    //updating counter elem on DOM to reflect current changes in remaining characters
+    counterElement.text(remainingChars);
 
-    if(remainingCharacter >= 50){
-      counterElement.css('color','black');
-    }else if(remainingCharacter < 50 && remainingCharacter > 0){
-      counterElement.css('color','orange');
-    } else {
-      counterElement.css('color','red');
+    if (remainingChars < 0) {
+      counterElement.css('color', 'red');
+    } else if (remainingChars > 0 && remainingChars < 50){
+      counterElement.css('color', 'orange');
     }
-
+      remainingChars.css('color', 'black');
+    
   })
-
-})
+});
