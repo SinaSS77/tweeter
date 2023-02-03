@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@1,300;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Itim&family=Playfair+Display:wght@400;500&family=Source+Sans+Pro:ital,wght@1,300;1,600&display=swap"
       rel="stylesheet"
     />
 
@@ -39,6 +39,12 @@
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
       defer
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+      integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js" defer></script>
@@ -46,8 +52,16 @@
   </head>
 
   <body>
-    <!-- Top nav bar (fixed) -->
-    <nav>
+    <!-- Top nav bar For Devices with the screen 768px and bigger -->
+    <nav class="bigDevices">
+      <h2>tweeter</h2>
+      <div class="nav_p">
+        <p><span>Write</span> a new tweet</p>
+        <i class="fa-solid fa-angles-down"></i>
+      </div>
+      <!-- Top nav bar For Devices with the screen smaller than 768px -->
+    </nav>
+    <nav class="smallDevices">
       <h2>tweeter</h2>
       <div class="nav_p">
         <p><span>Write</span> a new tweet</p>
@@ -55,41 +69,37 @@
       </div>
     </nav>
 
-    <header>
-      <div class="header_img">
-        <img src="/images/profile-hex.png" alt="user_Image" />
-      </div>
-      <br />
-      <div class="header_name">
-        <h3><span>Sina</span> Molaverdikhani</h3>
-      </div>
-    </header>
 
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form action="/tweets/" method="POST" id="submit-tweet">
-          <label for="tweet-text"></label>
-          <textarea
-            name="text"
-            class="tweet-text"
-            id="tweet-text"
-            placeholder="What are you humming about?"
-          ></textarea>
-          <div class="under-tweet-input">
-            <button type="submit" id="tweetBtn">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-     </section>
+    <!-- the whole body includes two base parts: mainHeader and tweetBox  -->
+    <div class="bodyContent">
+      <header class="mainHeader">
+        <div class="header_img">
+          <img class="headerImg" src="/images/profile-hex.png" alt="user_Image"/>
+        </div>
+        <br/>
+        <div class="header_name">
+          <h3><span>Sina</span> Molaverdikhani</h3>
+        </div>
+      </header>
 
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet">
+          <span class="errorContainer"></span>
 
-
-      <section class="tweet-history" id="tweets-container">
-       </section>
-
-
-    </main>
+          <form action="/tweets/" method="POST" id="submit-tweet">
+            <label for="tweet-text"></label>
+            <textarea name="text" class="tweet-text" id="tweet-text" placeholder="What are you humming about?"></textarea>
+            <div class="under-tweet-input">
+              <button type="submit" id="tweetBtn">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
+          </form>
+        </section>
+        
+       <!-- This section is for tweeted box that will fill in with JS -->
+        <section class="tweet-history" id="tweets-container"></section>
+      </main>
+    </div>
   </body>
 </html>
