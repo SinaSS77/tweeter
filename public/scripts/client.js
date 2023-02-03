@@ -1,61 +1,87 @@
-const data = [
-  {
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac",
-    },
-    content: {
-      text: "If I have seen further it is by standing on the shoulders of giants",
-    },
-    created_at: 1674970510503,
-  },
-  {
-    user: {
-      name: "Descartes",
-      avatars: "https://i.imgur.com/nlhLi3I.png",
-      handle: "@rd",
-    },
-    content: {
-      text: "Je pense , donc je suis",
-    },
-    created_at: 1675056910503,
-  },
-];
+//coming from composer-char-counter.js file
+$(document).ready(function () {
+  // a function to create the same appearance as the rest for the newest one
+  const createTweetElement = function (tObject) {
+    //to escape from XSS
+    const escape = function (str) {
+      let param = document.createElement("p");
+      param.appendChild(document.createTextNode(str));
+      return param.innerHTML;
+    };
 
-const renderTweets = function (arrayOfTweetObj) {
-  for (let item of arrayOfTweetObj) {
-    const $tweet = createTweetElement(item);
+    const $tweet = `<article class="tweet-Container">
+    <header>
+     <div class="tweeterName">
+       <img src="${tObject.user.avatars}" alt="UsersImage" />
+       <label>${tObject.user.name}</label>
+     </div>
+        <label class="handle">${tObject.user.handle}</label>
+    </header>
+         <div class="tweetedText">${escape(tObject.content.text)}</div>
+    <footer>
+        <label>${timeago.format(tObject.created_at)}</label>
+         <div class="icons">
+           <i class="fa-solid fa-flag"></i>
+           <i class="fa-solid fa-retweet"></i>
+           <i class="fa-solid fa-heart"></i>
+         </div>
+    </footer>
+  </article>`;
+    return $tweet;
+  };
 
-    $("#tweets-container").append($tweet);
-  }
-};
+  //resets countdoen to 140 characters
+  const resetCounter = () => {
+    $(".counter").text(140);
+  };
 
-const createTweetElement = function (tObject) {
-  const $tweet = `<article class="tweet-box">
+  //error handler function
+  const appendError = (errorMessage) => {
+    $(".errorContainer").css("visibility", "visible");
+    $(".errorContainer").text(errorMessage).slideDown().delay(3000).hide(500);
+  };
 
-  <header>
-    <div class="tweeterName">
-      <img src="${tObject.user.avatars}" alt="UsersImage" />
-      <label>${tObject.user.name}</label>
-    </div>
-    <label class="handle">${tObject.user.handle}</label>
-  </header>
+  //removes errors to keep multiple errors from popping up with repeated error inducing clicks
+  const removeError = () => {
+    $(".errorContainer").remove();
+    $(".errorContainer").hide();
+  };
 
-  <div class="tweetedText">${tObject.content.text}</div>
+  //Defining an action for submit button of form utilizing AJAX
+  $("form").submit(function (event) {
+    event.preventDefault();
+    const $text = $("#tweet-text").val();
+    if ($text.length > 140) {
+      appendError(
+        `🚫 Your text's charachters are more than 140. Please make it shorter.`
+      );
+    } else if (!$text || $text == "" || $text == null) {
+      appendError(
+        `🚫 Your tweet's Container is empty. Please check your tweet then resend it!`
+      );
+    } else {
+      const serilizedData = $(this).serialize();
+      $.ajax("/tweets", { method: "POST", data: serilizedData }).then(() => {
+        loadTweets();
+      });
+      $(this).children("textarea").val("");
+      resetCounter();
+    }
+  });
 
-  <footer>
-    <label>${tObject.created_at}</label>
-    <div class="icons">
-      <i class="fa-solid fa-flag"></i>
-      <i class="fa-solid fa-retweet"></i>
-      <i class="fa-solid fa-heart"></i>
-    </div>
-  </footer>
+  //To render new tweets and append them to the end of tweets, with a similar appearance to others
+  const renderTweets = function (arrayOfTweetObj) {
+    for (let item of arrayOfTweetObj) {
+      const $tweet = createTweetElement(item);
+      $("#tweets-container").append($tweet);
+    }
+  };
 
-</article>`;
-
-  return $tweet;
-};
-
-renderTweets(data);
+  //Best Ajax way to request a GET for the "/tweets" URL and response data with the help of render-function
+  const loadTweets = () => {
+    $.get("/tweets").then((data) => {
+      renderTweets(data);
+    });
+  };
+  loadTweets();
+});
