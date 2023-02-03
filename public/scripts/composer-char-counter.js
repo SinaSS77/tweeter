@@ -1,15 +1,8 @@
 //responsible for character counter of tweet input form
 $(document).ready(function () {
-
-const escape = function (str){
-  let div = document
-}
-
-
-
-  $('#tweet-text').on('keyup', function (e) {
+  $('#tweet-text').on('input', function (e) {
        //tracking character count input from user using keyup
-       
+    
     const currentValue = $(this).val().length
     //locating the counter element
     const remainingChars = 140 - currentValue;
