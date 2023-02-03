@@ -1,20 +1,42 @@
-#tweetBtn{
+#tweetBtn {
+  width: 7rem;
+  height: 2rem;
   background-color: navy;
   color: antiquewhite;
-  }
-#tweet-text{
+}
+#tweetBtn:hover {
+  background-color: blue;
+}
+#tweetBtn:active {
+  background-color: rgb(103, 128, 229);
+}
+#tweet-text {
   border: none;
   border-bottom: solid 4px black;
   background-color: #f4f1ec;
-  width:100%;
-  
+  width: 100%;
   margin-bottom: 10px;
 }
-
-.under-tweet-input{
+.under-tweet-input {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: 'Bungee', cursive;
-  font-size: 18px;
+  font-family: "Bungee", cursive;
+  font-size: 14px;
+}
+
+/* -----------------+++++++++++++---------------- */
+@media only screen and (min-width: 768px) {
+  /* -----------------+++++++++++++---------------- */
+
+  #tweetBtn {
+    width: 9rem;
+    height: 3rem;
+    background-color: navy;
+    color: antiquewhite;
+  }
+
+  .under-tweet-input {
+    font-size: 18px;
+  }
 }
