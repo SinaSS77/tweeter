@@ -1,9 +1,9 @@
 //coming from composer-char-counter.js file
-$(document).ready(function () {
+$(document).ready(function() {
   // a function to create the same appearance as the rest for the newest one
-  const createTweetElement = function (tObject) {
+  const createTweetElement = function(tObject) {
     //to escape from XSS
-    const escape = function (str) {
+    const escape = function(str) {
       let param = document.createElement("p");
       param.appendChild(document.createTextNode(str));
       return param.innerHTML;
@@ -27,7 +27,7 @@ $(document).ready(function () {
          </div>
     </footer>
   </article>`);
-  $tweet.find('.tweetedText').text(tObject.content.text)
+    $tweet.find('.tweetedText').text(tObject.content.text);
     return $tweet;
   };
 
@@ -44,9 +44,9 @@ $(document).ready(function () {
     $(".errorContainer").text(errorMessage).slideDown().delay(3000);
   };
 
- 
+
   //Defining an action for submit button of form utilizing AJAX
-  $("form").submit(function (event) {
+  $("form").submit(function(event) {
     event.preventDefault();
     const $text = $("#tweet-text").val();
     if ($text.length > 140) {
@@ -59,16 +59,18 @@ $(document).ready(function () {
       );
     } else {
       const serilizedData = $(this).serialize();
-      $.ajax("/tweets", { method: "POST", data: serilizedData }).then(() => {
-        reset();
-        loadTweets();
-      });
-            
+      $.ajax("/tweets", { method: "POST", data: serilizedData })
+
+        .then(() => {
+          reset();
+          loadTweets();
+        });
+
     }
   });
 
   //To render new tweets and append them to the end of tweets, with a similar appearance to others
-  const renderTweets = function (arrayOfTweetObj) {
+  const renderTweets = function(arrayOfTweetObj) {
     $("#tweets-container").empty();
     for (let item of arrayOfTweetObj) {
       const $tweet = createTweetElement(item);

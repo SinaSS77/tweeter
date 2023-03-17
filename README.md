@@ -6,8 +6,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Final Product
 
-!["Small Screens"](https://github.com/SinaSS77/tinyapp/blob/main/docs/Login_page.png)
-!["Biger Screens"](https://github.com/SinaSS77/tinyapp/blob/main/docs/Submited_URLs_page.png)
+!["Small Screens"](https://github.com/SinaSS77/tweeter/blob/master/Docs/Screenshot%202023-02-02%20at%206.47.52%20PM.png)
+!["Biger Screens"](https://github.com/SinaSS77/tweeter/blob/master/Docs/Screenshot%202023-02-02%20at%206.49.15%20PM.png)
 
 
 ## Getting Started
